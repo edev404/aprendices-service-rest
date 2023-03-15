@@ -86,6 +86,18 @@ public class AprendicesController {
         return ResponseEntity.ok().body(new PageImpl<>(aprendicesDTO));
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<AprendizDTO> findById(@PathVariable("id") String idAprendiz){
+
+        Optional<Aprendiz> optional = aprendicesService.findById(idAprendiz);
+        if(optional.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        AprendizDTO dto = aprendizToAprendizDTO.map(optional.get());
+        return ResponseEntity.ok().body(dto);
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<AprendizDTO> updateById(
                                     @PathVariable("id") String idAprendiz,
@@ -137,7 +149,7 @@ public class AprendicesController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/enable/{id}")
+    @PatchMapping("enable/{id}")
     public ResponseEntity<Boolean> enableById(@PathVariable("id") String idAprendiz){
 
         Optional<Aprendiz> optional = aprendicesService.findById(idAprendiz);
@@ -157,7 +169,7 @@ public class AprendicesController {
 
     }
 
-    @PatchMapping("/disable/{id}")
+    @PatchMapping("disable/{id}")
     public ResponseEntity<Boolean> disableById(@PathVariable("id") String idAprendiz){
 
         Optional<Aprendiz> optional = aprendicesService.findById(idAprendiz);

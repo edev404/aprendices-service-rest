@@ -16,4 +16,5 @@ public class AprendizDTO {
     private String programa;
     private String correoElectronico;
     private String celular;
+    private String status;
 }

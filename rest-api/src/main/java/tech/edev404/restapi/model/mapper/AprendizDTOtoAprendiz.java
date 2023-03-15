@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import tech.edev404.restapi.model.dto.AprendizDTO;
 import tech.edev404.restapi.model.entities.Aprendiz;
 import tech.edev404.restapi.model.entities.enums.TipoDocumento;
+import tech.edev404.restapi.model.entities.status.AprendizStatus;
 
 @Service
 @Primary
@@ -19,6 +20,8 @@ public class AprendizDTOtoAprendiz implements GenericMapper<AprendizDTO, Aprendi
         pojo.setPrograma(dto.getPrograma());
         pojo.setCorreoElectronico(dto.getCorreoElectronico());
         pojo.setTipoDocumento(TipoDocumento.valueOf(dto.getTipoDocumento()));
+        pojo.setCelular(dto.getCelular());
+        pojo.setStatus(AprendizStatus.valueOf(dto.getStatus()));
         return pojo;
     }
     
